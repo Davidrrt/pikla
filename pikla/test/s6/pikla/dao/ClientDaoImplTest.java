@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package s6.pikla.dao;
 
 import java.util.List;
@@ -14,10 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import s6.pikla.model.Client;
 
-/**
- *
- * @author davra
- */
+
 public class ClientDaoImplTest {
     
     public ClientDaoImplTest() {
@@ -39,9 +32,7 @@ public class ClientDaoImplTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of save method, of class ClientDaoImpl.
-     */
+ 
     @Test
     public void testSave() throws Exception {
         System.out.println("save");

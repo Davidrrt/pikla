@@ -16,9 +16,9 @@ import s6.pikla.model.Location;
 public class LocationDaoImpl implements LocationDao {
 
     private DAOFactory daoFactory;
-    private static final String SQL_INSERT_SAVE = "";
-    private static final String SQL_UPDATE_UP = "";
-    private static final String SQL_DELETE_DEL = "";
+    private static final String SQL_INSERT_SAVE = "INSERT INTO location(idvoiture, idclient, depart, arrivee, duree, date_location)VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE_UP = "UPDATE location SET  idvoiture=?, idclient=?, depart=?, arrivee=?, duree=?,date_location=? WHERE idlocation=?";
+    private static final String SQL_DELETE_DEL = "DELETE FROM location WHERE idlocation=?";
     private static final String SQL_SELECT_FIND_ALL = "";
     private static final String SQL_SELECT_BY_ID = "";
 

@@ -13,11 +13,11 @@ import s6.pikla.model.Client;
 public class ClientDaoImpl implements ClientDao {
 
     private DAOFactory daoFactory;
-    private static final String SQL_INSERT_SAVE = "";
-    private static final String SQL_UPDATE_UP = "";
-    private static final String SQL_DELETE_DEL = "";
-    private static final String SQL_SELECT_FIND_ALL = "";
-    private static final String SQL_SELECT_BY_ID = "";
+    private static final String SQL_INSERT_SAVE = "INSERT INTO client(nom_client, prenom_client, cin_client, adresse_client, tel_client, login, password, statut) VALUES ( ?, ?, ?, ?,?, ?, ?, ?)";
+    private static final String SQL_UPDATE_UP = "UPDATE client SET  nom_client=?, prenom_client=?, cin_client=?, adresse_client=?,tel_client=?, login=?, password=?, statut=? WHERE idclient=?";
+    private static final String SQL_DELETE_DEL = "DELETE FROM client WHERE idclient=?";
+    private static final String SQL_SELECT_FIND_ALL = "SELECT idclient, nom_client, prenom_client, cin_client, adresse_client,tel_client, login, password, statut FROM client";
+    private static final String SQL_SELECT_BY_ID = "SELECT idclient, nom_client, prenom_client, cin_client, adresse_client,tel_client, login, password, statut FROM client WHERE idclient=?";
 
     public ClientDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -117,7 +117,7 @@ public class ClientDaoImpl implements ClientDao {
         try {
             connexion = daoFactory.getConnection();
      
-                preparedStatement = initialisationRequetePreparee(connexion,SQL_SELECT_FIND_ALL, false,id);
+                preparedStatement = initialisationRequetePreparee(connexion,SQL_SELECT_BY_ID, false,id);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
                 tab=map(resultSet);
@@ -131,14 +131,15 @@ public class ClientDaoImpl implements ClientDao {
     }
   private static Client map(ResultSet resultSet) throws SQLException {
         Client utilisateur = new Client();
-        utilisateur.setIdClient(resultSet.getLong(""));
-        utilisateur.setNomClient(resultSet.getString(""));
-        utilisateur.setPrenomClient(resultSet.getString(""));
-        utilisateur.setAdresseClient(resultSet.getString(""));
-        utilisateur.setCinClient(resultSet.getString(""));
-        utilisateur.setTelClient(resultSet.getString(""));
-        utilisateur.setLogin(resultSet.getString(""));
-        utilisateur.setPassword(resultSet.getString(""));
+        utilisateur.setIdClient(resultSet.getLong("idclient"));
+        utilisateur.setNomClient(resultSet.getString("nom_client"));
+        utilisateur.setPrenomClient(resultSet.getString("prenom_client"));
+        utilisateur.setAdresseClient(resultSet.getString("adresse_client"));
+        utilisateur.setCinClient(resultSet.getString("cin_client"));
+        utilisateur.setTelClient(resultSet.getString("tel_client"));
+        utilisateur.setLogin(resultSet.getString("login"));
+        utilisateur.setPassword(resultSet.getString("password"));
+        utilisateur.setStatut(resultSet.getBoolean("statut"));
         return utilisateur;
     }
 }
